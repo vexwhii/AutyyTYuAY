@@ -1,20 +1,80 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rainbow Number</title>
-    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+        #number {
+            font-size: 48px;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, #00f, #0f0, #f00);
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+        .copy-button {
+            font-size: 18px;
+            padding: 10px 20px;
+            margin-top: 20px;
+            cursor: pointer;
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            border-radius: 4px;
+            text-align: center;
+        }
+        .copy-button:hover {
+            background-color: #45a049;
+        }
+        .copied {
+            background-color: #008CBA;
+        }
+    </style>
 </head>
-
 <body>
-    <div class="container">
-        <div class="rainbow-number" id="number">121929882</div>
-        <button class="copy-button" onclick="copyToClipboard()">Copy to Clipboard</button>
-    </div>
+    <div id="number">121929882</div>
+    <button class="copy-button" id="copy-button" onclick="copyToClipboard()">Copy to Clipboard</button>
 
-    <script src="script.js"></script>
+    <script>
+        function copyToClipboard() {
+            const numberElement = document.getElementById('number');
+            const numberText = numberElement.textContent || numberElement.innerText;
+            const copyButton = document.getElementById('copy-button');
+
+            if (navigator.clipboard && window.isSecureContext) {
+                navigator.clipboard.writeText(numberText)
+                    .then(() => {
+                        copyButton.textContent = 'Copied';
+                        copyButton.classList.add('copied');
+                    })
+                    .catch((err) => {
+                        console.error('Failed to copy to clipboard: ', err);
+                    });
+            } else {
+                const textarea = document.createElement('textarea');
+                textarea.value = numberText;
+                textarea.style.position = 'fixed'; // Prevent scrolling to bottom of page on mobile
+                document.body.appendChild(textarea);
+                textarea.select();
+                try {
+                    document.execCommand('copy');
+                    copyButton.textContent = 'Copied';
+                    copyButton.classList.add('copied');
+                } catch (err) {
+                    console.error('Failed to copy to clipboard: ', err);
+                } finally {
+                    document.body.removeChild(textarea);
+                }
+            }
+        }
+    </script>
 </body>
-
 </html>
