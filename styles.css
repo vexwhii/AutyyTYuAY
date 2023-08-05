@@ -1,0 +1,24 @@
+body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: black;
+}
+
+.rainbow-number {
+    font-size: 48px;
+    font-weight: bold;
+    animation: rainbow 5s infinite;
+}
+
+@keyframes rainbow {
+    0% { color: #FF0000; }
+    16.67% { color: #FF7F00; }
+    33.33% { color: #FFFF00; }
+    50% { color: #00FF00; }
+    66.67% { color: #0000FF; }
+    83.33% { color: #4B0082; }
+    100% { color: #9400D3; }
+}
