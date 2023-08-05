@@ -7,6 +7,10 @@ body {
     background-color: black;
 }
 
+.container {
+    text-align: center;
+}
+
 .rainbow-number {
     font-size: 96px;
     font-weight: bold;
@@ -16,6 +20,15 @@ body {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     animation: gradient 5s infinite linear;
+}
+
+.copy-button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    cursor: pointer;
 }
 
 @keyframes gradient {
