@@ -5,10 +5,11 @@ function copyToClipboard() {
     if (navigator.clipboard && window.isSecureContext) {
         navigator.clipboard.writeText(numberText)
             .then(() => {
-                alert('Number copied to clipboard!');
+                updateCopyButton(true);
             })
             .catch((err) => {
                 console.error('Failed to copy to clipboard: ', err);
+                updateCopyButton(false);
             });
     } else {
         const textarea = document.createElement('textarea');
@@ -18,11 +19,22 @@ function copyToClipboard() {
         textarea.select();
         try {
             document.execCommand('copy');
-            alert('Number copied to clipboard!');
+            updateCopyButton(true);
         } catch (err) {
             console.error('Failed to copy to clipboard: ', err);
+            updateCopyButton(false);
         } finally {
             document.body.removeChild(textarea);
         }
+    }
+}
+
+function updateCopyButton(success) {
+    const copyButton = document.querySelector('.copy-button');
+    if (success) {
+        copyButton.textContent = 'Copied';
+        copyButton.disabled = true;
+    } else {
+        copyButton.textContent = 'Copy to Clipboard';
     }
 }
