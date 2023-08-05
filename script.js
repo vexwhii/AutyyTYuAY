@@ -5,11 +5,7 @@ function copyToClipboard() {
     if (navigator.clipboard && window.isSecureContext) {
         navigator.clipboard.writeText(numberText)
             .then(() => {
-                const copyButton = document.getElementById('copyButton');
-                copyButton.innerText = 'Copied';
-                setTimeout(() => {
-                    copyButton.innerText = 'Copy to Clipboard';
-                }, 5000);
+                setCopied();
             })
             .catch((err) => {
                 console.error('Failed to copy to clipboard: ', err);
@@ -22,15 +18,21 @@ function copyToClipboard() {
         textarea.select();
         try {
             document.execCommand('copy');
-            const copyButton = document.getElementById('copyButton');
-            copyButton.innerText = 'Copied';
-            setTimeout(() => {
-                copyButton.innerText = 'Copy to Clipboard';
-            }, 5000);
+            setCopied();
         } catch (err) {
             console.error('Failed to copy to clipboard: ', err);
         } finally {
             document.body.removeChild(textarea);
         }
     }
+}
+
+function setCopied() {
+    const copyButton = document.querySelector('.copy-button');
+    copyButton.textContent = 'Copied';
+    copyButton.disabled = true;
+    setTimeout(() => {
+        copyButton.textContent = 'Copy to Clipboard';
+        copyButton.disabled = false;
+    }, 5000);
 }
