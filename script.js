@@ -1,11 +1,15 @@
 function copyToClipboard() {
     const numberElement = document.getElementById('number');
     const numberText = numberElement.textContent || numberElement.innerText;
+    const copyButton = document.getElementById('copyButton');
 
     if (navigator.clipboard && window.isSecureContext) {
         navigator.clipboard.writeText(numberText)
             .then(() => {
-                alert('Number copied to clipboard!');
+                copyButton.textContent = 'Copied';
+                setTimeout(() => {
+                    copyButton.textContent = 'Copy to Clipboard';
+                }, 5000);
             })
             .catch((err) => {
                 console.error('Failed to copy to clipboard: ', err);
@@ -18,7 +22,10 @@ function copyToClipboard() {
         textarea.select();
         try {
             document.execCommand('copy');
-            alert('Number copied to clipboard!');
+            copyButton.textContent = 'Copied';
+            setTimeout(() => {
+                copyButton.textContent = 'Copy to Clipboard';
+            }, 5000);
         } catch (err) {
             console.error('Failed to copy to clipboard: ', err);
         } finally {
