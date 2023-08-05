@@ -1,42 +1,40 @@
-
+/* styles.css */
 body {
-    margin: 0;
-    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: black;
+    height: 100vh;
+    margin: 0;
+    background-color: #f0f0f0;
 }
 
 .container {
-    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .rainbow-number {
-    font-size: 96px;
+    font-size: 48px;
     font-weight: bold;
-    font-family: 'Arial', sans-serif;
-    background: linear-gradient(45deg, #00A8FF, #0097E6, #0077B6, #005C99, #003E6B, #001845);
-    background-size: 400%;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    animation: gradient 5s infinite linear;
+    color: transparent;
+    background-clip: text;
+    background-image: linear-gradient(to right, #00f, #00f 16.666%, #0f0 16.666%, #0f0 33.333%, #ff0 33.333%, #ff0 50%, #f00 50%, #f00 66.666%, #ff0 66.666%, #ff0 83.333%, #00f 83.333%, #00f 100%);
+    user-select: none; /* Disable text selection */
 }
 
 .copy-button {
+    margin-top: 20px;
     padding: 10px 20px;
-    font-size: 16px;
-    background-color: #3498db;
-    color: white;
+    font-size: 18px;
+    background-color: #007BFF;
+    color: #fff;
     border: none;
+    border-radius: 5px;
     cursor: pointer;
+    transition: background-color 0.2s;
 }
 
-@keyframes gradient {
-    0% {
-        background-position: 0 50%;
-    }
-    100% {
-        background-position: 400% 50%;
-    }
+.copy-button:hover {
+    background-color: #0056b3;
 }
