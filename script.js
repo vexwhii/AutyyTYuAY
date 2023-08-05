@@ -1,16 +1,4 @@
-let isCopyEnabled = false;
-
-function enableCopy() {
-    isCopyEnabled = true;
-    const copyButton = document.querySelector('.copy-button');
-    copyButton.textContent = 'Copy to Clipboard';
-}
-
 function copyToClipboard() {
-    if (!isCopyEnabled) {
-        return;
-    }
-
     const numberElement = document.getElementById('number');
     const numberText = numberElement.textContent || numberElement.innerText;
 
@@ -46,6 +34,5 @@ function setCopied() {
     setTimeout(() => {
         copyButton.textContent = 'Copy to Clipboard';
         copyButton.disabled = false;
-        isCopyEnabled = false;
     }, 5000);
 }
